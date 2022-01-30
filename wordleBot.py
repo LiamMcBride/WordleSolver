@@ -53,7 +53,7 @@ def guess(board,words,letters):
 def scoreConvert(word, score):
     letArr = list(word)
     #soare
-    #['X', 'X', 'O', 'X', 'O']
+    #['C', 'X', 'X', 'X', 'O']
     scores = []
 
     for i in range(0,5):
@@ -78,7 +78,7 @@ def scoreConvert(word, score):
             scores.append(["X","X","X","X","X"])
     return scores
 
-for z in range(0, 20):
+for z in range(0, 1):
 
     board = WB()
 

@@ -26,7 +26,7 @@ class Letter:
     def __init__(self, letter, score):
         self.letter = letter
         self.score = score
-        #["o","o","o","x","o"]
+        #["x","x","x","o","o"]
 
     def updateScore(self, newScore):
         #["","","x","",""]
