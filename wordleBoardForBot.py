@@ -58,15 +58,20 @@ class WordleBoard:
                 boardString += letter
             boardString += "\n"
         print(boardString)
+    
+    def getBoard(self):
+        return self.board
+    
+    def getScore(self):
+        return self.scoreBoard
 
     def takeGuess(self, resp):
-        # resp = input("Please enter a guess:\n")
         if self.checkInBank(resp):
             self.board[self.guess] = list(resp)
             self.guess += 1
-        else:
-            print("Not a word")
-            self.takeGuess(input("Please enter a guess:\n"))
+        # else:
+        #     print("Not a word")
+        #     self.takeGuess(input("Please enter a guess:\n"))
     
     def checkInBank(self, word):
         words = []        
@@ -78,9 +83,6 @@ class WordleBoard:
         return word in words
 
     def verifyGuess(self):
-        # if(self.word == self.createWord()):
-        #     print("correct")
-        # else:
         for i in range(0,5):
             let = self.board[self.guess - 1][i]
             if let == self.word[i]:
@@ -116,13 +118,3 @@ class WordleBoard:
         print(line)
 
 
-
-board = WordleBoard()
-for i in range(0,5):
-    board.takeGuess(input("Please enter a guess:\n"))
-    board.verifyGuess()
-    os.system('cls')
-    board.printBoard()
-    board.showWordBank()
-
-print(board.word)
