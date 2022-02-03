@@ -78,7 +78,11 @@ def scoreConvert(word, score):
             scores.append(["X","X","X","X","X"])
     return scores
 
-for z in range(0, 1):
+wins = 0
+losses = 0
+numRuns = 1000
+
+for z in range(0, numRuns):
 
     board = WB()
 
@@ -187,10 +191,17 @@ for z in range(0, 1):
 
     print(board.word)
 
+    if board.won:
+        wins += 1
+    else:
+        losses += 1
 
 
 
 
+print("Wins: " + str(wins))
+print("Losses: " + str(losses))
+print("Success Rate: " + str(100 * wins/numRuns) + "%")
 
 
 

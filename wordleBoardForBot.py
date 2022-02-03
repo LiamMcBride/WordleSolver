@@ -46,7 +46,9 @@ class WordleBoard:
             "z"
         ]
         self.word = self.getWord()
+        #self.word = "shard"
         self.guess = 0
+        self.won = False
 
     def printBoard(self):
         boardString = ''
@@ -93,6 +95,9 @@ class WordleBoard:
                 self.scoreBoard[self.guess - 1][i] = "X"
                 if let in self.bank:
                     self.bank.remove(let)
+        if "X" not in self.scoreBoard[self.guess - 1] and "O" not in self.scoreBoard[self.guess - 1] and not self.won:
+            self.won = True
+            print("*******************************won")
                 
 
     def createWord(self):
