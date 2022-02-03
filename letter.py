@@ -26,7 +26,11 @@ class Letter:
     def __init__(self, letter, score):
         self.letter = letter
         self.score = score
+        self.rating = 0
         #["x","x","x","o","o"]
+
+    def setRating(self, newRating):
+        self.rating = newRating
 
     def updateScore(self, newScore):
         #["","","x","",""]
@@ -46,13 +50,81 @@ class Letter:
         else:
             return False
 
-let = Letter("a", ["O","O","X","O","O"])
-let2 = Letter("e", ["O","O","X","O","O"])
+class FrequencyMaker:
+    def __init__(self):
+        self.letters = [
+                "a",
+                "b",
+                "c",
+                "d",
+                "e",
+                "f",
+                "g",
+                "h",
+                "i",
+                "j",
+                "k",
+                "l",
+                "m",
+                "n",
+                "o",
+                "p",
+                "q",
+                "r",
+                "s",
+                "t",
+                "u",
+                "v",
+                "w",
+                "y",
+                "x",
+                "z"
+                ]
+        self.fileName = "frequency.txt"
+        self.frequencyDict = {}
+        self.create()
+    
+    def create(self):
+        with open(self.fileName) as f:
+            lines = f.readlines()
+            for line in lines:
+                self.frequencyDict[self.letters.pop()] = float(line[0:-1])
+        f.close()
+        #print(self.frequencyDict)
+    
+    def score(self, words):
+        best = 0
+        bestWord = ""
 
-temp = "cleat"
+        for word in words:
+            lets = list(word)
 
-print(let.match(temp) and let2.match(temp))
+            temp = 0
+            for let in word:
+                temp += self.frequencyDict[let]
+            
+            if temp > best:
+                best = temp
+                bestWord = word
 
-print(let.score)
-let.updateScore(["O","X","O","O","O"])
-print(let.score)
+        return(bestWord)
+
+
+
+# let = Letter("a", ["O","O","X","O","O"])
+# let2 = Letter("e", ["O","O","X","O","O"])
+
+# temp = "cleat"
+
+# print(let.match(temp) and let2.match(temp))
+
+# print(let.score)
+# let.updateScore(["O","X","O","O","O"])
+# print(let.score)
+
+f = FrequencyMaker()
+
+
+#print(f.frequencyDict["s"])
+
+print(f.score(["later","notes","acrid"]))

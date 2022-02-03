@@ -1,5 +1,5 @@
 from wordleBoardForBot import WordleBoard as WB
-from letter import Letter, LetterHolder
+from letter import FrequencyMaker, Letter, LetterHolder
 import random
 
 def narrowWords(words, letters):
@@ -25,6 +25,12 @@ def narrowWords(words, letters):
     print(len(words))
     return words
 
+def bestLetter(words, letters):
+    freq = FrequencyMaker()
+
+
+
+
 def guess(board,words,letters):
     if(len(words) == 0):
         print("------------- Failed --------------")
@@ -34,7 +40,10 @@ def guess(board,words,letters):
         return board, letters
     
     else:
-        newGuess = random.choice(words)
+        #newGuess = random.choice(words)
+        freq = FrequencyMaker()
+
+        newGuess = freq.score(words)
         print("Guess is " + newGuess)
 
         board.takeGuess(newGuess)
@@ -85,6 +94,7 @@ numRuns = 1000
 for z in range(0, numRuns):
 
     board = WB()
+    freq = FrequencyMaker()
 
 
     letters = LetterHolder()
