@@ -1,5 +1,6 @@
 from wordleBoardForBot import WordleBoard as WB
 from letter import FrequencyMaker, Letter, LetterHolder
+from master import wordList, numRuns
 import random
 
 def narrowWords(words, letters):
@@ -89,7 +90,6 @@ def scoreConvert(word, score):
 
 wins = 0
 losses = 0
-numRuns = 1000
 
 for z in range(0, numRuns):
 
@@ -99,7 +99,7 @@ for z in range(0, numRuns):
 
     letters = LetterHolder()
     words = []        
-    with open('cleanDict.txt') as f:
+    with open(wordList) as f:
         lines = f.readlines()
         for line in lines:
             words.append(line[0:-1])

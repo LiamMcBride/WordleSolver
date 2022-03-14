@@ -1,5 +1,6 @@
 import os
 import random
+from master import wordList, secretWordList
 
 class WordleBoard:
     def __init__(self):
@@ -77,7 +78,7 @@ class WordleBoard:
     
     def checkInBank(self, word):
         words = []        
-        with open('cleanDict.txt') as f:
+        with open(wordList) as f:
             lines = f.readlines()
             for line in lines:
                 words.append(line[0:-1])
@@ -108,7 +109,7 @@ class WordleBoard:
 
     def getWord(self):
         words = []
-        with open('cleanDict.txt') as f:
+        with open(secretWordList) as f:
             words = f.readlines()
         f.close()
 

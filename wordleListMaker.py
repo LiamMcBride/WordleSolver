@@ -1,7 +1,9 @@
+from master import wordList
+
 words = []
 lines = []
 
-with open('wordDictionary.txt') as f:
+with open(wordList) as f:
     lines = f.readlines()
 f.close()
 
@@ -12,6 +14,6 @@ words.sort()
 
 print(words)
 
-with open('cleanDict.txt', 'w') as f:
+with open(wordList, 'w') as f:
     f.writelines(words)
 f.close()

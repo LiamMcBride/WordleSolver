@@ -1,4 +1,5 @@
 from sympy import false
+from master import frequencyList
 
 class LetterHolder:
     def __init__(self):
@@ -80,7 +81,7 @@ class FrequencyMaker:
                 "x",
                 "z"
                 ]
-        self.fileName = "frequency.txt"
+        self.fileName = frequencyList
         self.frequencyDict = {}
         self.create()
     

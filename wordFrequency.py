@@ -1,4 +1,6 @@
-fileName = "cleanDict.txt"
+from master import wordList, frequencyList
+
+fileName = wordList
 
 letters = [
     "a",
@@ -43,7 +45,7 @@ f.close()
 for i in range(0, len(letters)):
     print(str(scores[i] * 100))
 
-with open("frequency.txt", "w") as f:
+with open(frequencyList, "w") as f:
     for i in range(0, len(scores)):
         f.write(str(scores[i] * 100) + "\n")
 f.close()
