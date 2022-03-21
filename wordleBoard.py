@@ -8,9 +8,11 @@ class WordleBoard:
             ["-","-","-","-","-"],
             ["-","-","-","-","-"],
             ["-","-","-","-","-"],
+            ["-","-","-","-","-"],
             ["-","-","-","-","-"]
             ]
         self.scoreBoard = [
+            ["i","i","i","i","i"],
             ["i","i","i","i","i"],
             ["i","i","i","i","i"],
             ["i","i","i","i","i"],
@@ -45,12 +47,13 @@ class WordleBoard:
             "x",
             "z"
         ]
-        self.word = self.getWord()
+        #self.word = self.getWord()
+        self.word = "cares"
         self.guess = 0
 
     def printBoard(self):
         boardString = ''
-        for i in range(0,5):
+        for i in range(0,6):
             for letter in self.board[i]:
                 boardString += letter
             boardString += "\n"
@@ -118,7 +121,7 @@ class WordleBoard:
 
 
 board = WordleBoard()
-for i in range(0,5):
+for i in range(0,6):
     board.takeGuess(input("Please enter a guess:\n"))
     board.verifyGuess()
     os.system('cls')

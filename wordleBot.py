@@ -41,10 +41,10 @@ def guess(board,words,letters):
         return board, letters
     
     else:
-        #newGuess = random.choice(words)
-        freq = FrequencyMaker()
+        newGuess = random.choice(words)
+        # freq = FrequencyMaker()
 
-        newGuess = freq.score(words)
+        # newGuess = freq.score(words)
         print("Guess is " + newGuess)
 
         board.takeGuess(newGuess)
@@ -185,6 +185,9 @@ for z in range(0, numRuns):
     print("------------ Fifth Guess ------------")
     board, letters = guess(board, words, letters)
 
+    words = narrowWords(words, letters)
+    print("------------ Sixth Guess ------------")
+    board, letters = guess(board, words, letters)
 
 
 
@@ -193,6 +196,7 @@ for z in range(0, numRuns):
 
 
 
+# Code fails when there is a double letter word. for shirr a guess of shirr will create a cccco pattern
 
 
 

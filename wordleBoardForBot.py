@@ -9,9 +9,11 @@ class WordleBoard:
             ["-","-","-","-","-"],
             ["-","-","-","-","-"],
             ["-","-","-","-","-"],
+            ["-","-","-","-","-"],
             ["-","-","-","-","-"]
             ]
         self.scoreBoard = [
+            ["i","i","i","i","i"],
             ["i","i","i","i","i"],
             ["i","i","i","i","i"],
             ["i","i","i","i","i"],
@@ -53,7 +55,7 @@ class WordleBoard:
 
     def printBoard(self):
         boardString = ''
-        for i in range(0,5):
+        for i in range(0,6):
             for letter in self.board[i]:
                 boardString += letter
             boardString += "\n"
