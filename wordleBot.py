@@ -1,6 +1,6 @@
 from wordleBoardForBot import WordleBoard as WB
 from letter import FrequencyMaker, Letter, LetterHolder
-from master import wordList, numRuns
+from master import wordList, numRuns, randomGuess
 import random
 
 def narrowWords(words, letters):
@@ -32,19 +32,25 @@ def bestLetter(words, letters):
 
 
 
-def guess(board,words,letters):
+def guess(board,words,letters, fails, failed):
     if(len(words) == 0):
         print("------------- Failed --------------")
-        print(board.word)
-        for let in letters.letters:
-            print(let.letter)
-        return board, letters
+        if failed == False:
+            fails += 1
+            failed = True
+        # print(board.word)
+        # for let in letters.letters:
+        #     print(let.letter)
+        return board, letters, fails, failed
     
     else:
-        newGuess = random.choice(words)
-        # freq = FrequencyMaker()
+        newGuess = "soare"
+        if(randomGuess):
+            newGuess = random.choice(words)
+        else:
+            freq = FrequencyMaker()
 
-        # newGuess = freq.score(words)
+            newGuess = freq.score(words)
         print("Guess is " + newGuess)
 
         board.takeGuess(newGuess)
@@ -58,7 +64,7 @@ def guess(board,words,letters):
         for i in range(0,5):
             letters.addLetter(Letter(newGuess[i], letterResults[i]))
             
-        return board,letters
+        return board,letters, fails, failed
 
 def scoreConvert(word, score):
     letArr = list(word)
@@ -90,6 +96,8 @@ def scoreConvert(word, score):
 
 wins = 0
 losses = 0
+fails = 0
+failed = False
 
 for z in range(0, numRuns):
 
@@ -116,8 +124,8 @@ for z in range(0, numRuns):
     firstGuess = "soare"
     board.takeGuess(firstGuess)
     board.verifyGuess()
-    board.printBoard()
-    board.showWordBank()
+    # board.printBoard()
+    # board.showWordBank()
 
     results = board.getScore()[board.guess - 1]
 
@@ -154,7 +162,7 @@ for z in range(0, numRuns):
 
     words = narrowWords(words, letters)
     print("------------ Second Guess ------------")
-    board, letters = guess(board, words, letters)
+    board, letters, fails, failed = guess(board, words, letters, fails, failed)
 
     # secondGuess = random.choice(words)
     # print("Second guess is " + secondGuess)
@@ -175,19 +183,19 @@ for z in range(0, numRuns):
 
     words = narrowWords(words, letters)
     print("------------ Third Guess ------------")
-    board, letters = guess(board, words, letters)
+    board, letters, fails, failed = guess(board, words, letters, fails, failed)
 
     words = narrowWords(words, letters)
     print("------------ Fourth Guess ------------")
-    board, letters = guess(board, words, letters)
+    board, letters, fails, failed = guess(board, words, letters, fails, failed)
 
     words = narrowWords(words, letters)
     print("------------ Fifth Guess ------------")
-    board, letters = guess(board, words, letters)
+    board, letters, fails, failed = guess(board, words, letters, fails, failed)
 
     words = narrowWords(words, letters)
     print("------------ Sixth Guess ------------")
-    board, letters = guess(board, words, letters)
+    board, letters, fails, failed = guess(board, words, letters, fails, failed)
 
 
 
@@ -210,11 +218,14 @@ for z in range(0, numRuns):
     else:
         losses += 1
 
+    failed = False
 
 
 
+print("Note: Losses includes fails\n\n")
 print("Wins: " + str(wins))
 print("Losses: " + str(losses))
+print("Fails: " + str(fails))
 print("Success Rate: " + str(100 * wins/numRuns) + "%")
 
 

@@ -88,16 +88,20 @@ class WordleBoard:
         return word in words
 
     def verifyGuess(self):
-        for i in range(0,5):
-            let = self.board[self.guess - 1][i]
-            if let == self.word[i]:
-                self.scoreBoard[self.guess - 1][i] = "C"
-            elif let in self.word:
-                self.scoreBoard[self.guess - 1][i] = "O"
-            else:
-                self.scoreBoard[self.guess - 1][i] = "X"
-                if let in self.bank:
-                    self.bank.remove(let)
+        try:
+            for i in range(0,5):
+                let = self.board[self.guess - 1][i]
+                if let == self.word[i]:
+                    self.scoreBoard[self.guess - 1][i] = "C"
+                elif let in self.word:
+                    self.scoreBoard[self.guess - 1][i] = "O"
+                else:
+                    self.scoreBoard[self.guess - 1][i] = "X"
+                    if let in self.bank:
+                        self.bank.remove(let)
+        except:
+            print("ABORTED")
+            print("Word was: " + self.word)
         if "X" not in self.scoreBoard[self.guess - 1] and "O" not in self.scoreBoard[self.guess - 1] and not self.won:
             self.won = True
             print("*******************************won")
@@ -123,6 +127,6 @@ class WordleBoard:
         line = "\n\n"
         for let in self.bank:
             line += let + " "
-        print(line)
+        #print(line)
 
 
