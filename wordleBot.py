@@ -2,6 +2,7 @@ from wordleBoardForBot import WordleBoard as WB
 from letter import FrequencyMaker, Letter, LetterHolder
 from master import wordList, numRuns, randomGuess
 import random
+import time
 
 def narrowWords(words, letters):
     newWords = []
@@ -98,6 +99,7 @@ wins = 0
 losses = 0
 fails = 0
 failed = False
+startTime = time.time()
 
 for z in range(0, numRuns):
 
@@ -222,11 +224,12 @@ for z in range(0, numRuns):
 
 
 
-print("Note: Losses includes fails\n\n")
+print("\n\nNote: Losses includes fails\n\n")
 print("Wins: " + str(wins))
 print("Losses: " + str(losses))
 print("Fails: " + str(fails))
 print("Success Rate: " + str(100 * wins/numRuns) + "%")
+print("Completed in: " + str(time.time() - startTime))
 
 
 
